@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { Calendar, User, ArrowLeft, Share2, Loader } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchPost = async ({ queryKey }) => {
+    const [_key, slug] = queryKey;
+    const { data, error } = await supabase.from('blog_posts').select('*').eq('slug', slug).single();
+    if (error && error.code !== 'PGRST116') throw error;
+    return data || null;
+};
 
 const BlogPost = () => {
     const { slug } = useParams();
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchPost = async () => {
-            setLoading(true);
-            try {
-                const { data, error } = await supabase.from('blog_posts').select('*').eq('slug', slug).single();
-                if (error && error.code !== 'PGRST116') throw error; // PGRST116 is "Results contain 0 rows"
-
-                if (data) {
-                    setPost(data);
-                } else {
-                    setPost(null);
-                }
-            } catch (error) {
-                console.error("Error fetching post:", error);
-            }
-            setLoading(false);
-        };
-
-        fetchPost();
-    }, [slug]);
+    const { data: post, isLoading: loading } = useQuery({
+        queryKey: ['blogPost', slug],
+        queryFn: fetchPost,
+        enabled: !!slug,
+    });
 
     if (loading) {
         return (

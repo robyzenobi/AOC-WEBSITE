@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { supabase } from '../../supabase';
 import { Plus, Edit, Trash2, X, Upload, Save, Loader } from 'lucide-react';
 import { compressImage } from '../../utils/imageOptimizer';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+
+const fetchPosts = async () => {
+    const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    return data || [];
+};
 
 const BlogAdmin = () => {
-    const [posts, setPosts] = useState([]);
+    const queryClient = useQueryClient();
+    const { data: posts = [], isLoading: loading } = useQuery({
+        queryKey: ['blogPosts'],
+        queryFn: fetchPosts,
+    });
+
     const [isEditing, setIsEditing] = useState(false);
     const [currentPost, setCurrentPost] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
 
     // Form State
@@ -16,22 +28,6 @@ const BlogAdmin = () => {
     const [category, setCategory] = useState('Technology');
     const [imageFile, setImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
-
-    const fetchPosts = async () => {
-        setLoading(true);
-        try {
-            const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
-            if (error) throw error;
-            setPosts(data);
-        } catch (error) {
-            console.error("Error fetching posts:", error);
-        }
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        fetchPosts();
-    }, []);
 
     const resetForm = () => {
         setTitle('');
@@ -52,15 +48,24 @@ const BlogAdmin = () => {
         setIsEditing(true);
     };
 
-    const handleDelete = async (id) => {
+    const deleteMutation = useMutation({
+        mutationFn: async (id) => {
+            const { error } = await supabase.from('blog_posts').delete().eq('id', id);
+            if (error) throw error;
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['blogPosts'] });
+            toast.success("Post deleted successfully!");
+        },
+        onError: (error) => {
+            console.error("Error deleting post:", error);
+            toast.error("Error deleting post: " + error.message);
+        }
+    });
+
+    const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this post?')) {
-            try {
-                const { error } = await supabase.from('blog_posts').delete().eq('id', id);
-                if (error) throw error;
-                fetchPosts();
-            } catch (error) {
-                console.error("Error deleting post:", error);
-            }
+            deleteMutation.mutate(id);
         }
     };
 
@@ -163,23 +168,26 @@ const BlogAdmin = () => {
             }
 
             console.log("Save complete!");
-            alert("Post saved successfully!");
+            toast.success("Post saved successfully!");
 
             resetForm();
-            fetchPosts();
+            queryClient.invalidateQueries({ queryKey: ['blogPosts'] });
+
+            // Invalidate the specific post's cache directly
+            queryClient.invalidateQueries({ queryKey: ['blogPost', slug] });
         } catch (error) {
             console.error("Error saving post:", error);
             let errorMessage = "Error saving post. ";
             if (error.code === 'storage/unauthorized') {
-                errorMessage += "Permission denied. Check Storage Rules in Firebase Console.";
+                errorMessage += "Permission denied. Check Storage Rules.";
             } else if (error.code === 'storage/canceled') {
                 errorMessage += "Upload was canceled.";
             } else if (error.code === 'storage/unknown') {
-                errorMessage += "Unknown storage error. Check console.";
+                errorMessage += "Unknown storage error.";
             } else {
                 errorMessage += error.message;
             }
-            alert(errorMessage);
+            toast.error(errorMessage);
         } finally {
             setUploading(false);
             setStatusText('');

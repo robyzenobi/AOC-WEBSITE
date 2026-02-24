@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Lock, Mail, Loader, AlertCircle, Leaf } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -22,6 +23,7 @@ const LoginPage = () => {
         } catch (err) {
             console.error("Login Error:", err);
             setError('Failed to log in. Please check your credentials.');
+            toast.error('Failed to log in. Please check your credentials.');
         }
 
         setLoading(false);

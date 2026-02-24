@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { Loader } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchPosts = async () => {
+    const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    return data;
+};
 
 const BlogPage = () => {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false });
-                if (error) throw error;
-                setPosts(data);
-            } catch (error) {
-                console.error("Error fetching posts:", error);
-            }
-            setLoading(false);
-        };
-
-        fetchPosts();
-    }, []);
+    const { data: posts = [], isLoading: loading } = useQuery({
+        queryKey: ['blogPosts'],
+        queryFn: fetchPosts,
+    });
 
     if (loading) {
         return (

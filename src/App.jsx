@@ -14,6 +14,10 @@ import AdminLayout from './components/admin/AdminLayout';
 import BlogAdmin from './pages/admin/BlogAdmin';
 import { AuthProvider } from './context/AuthContext';
 import { initializationError } from './supabase';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+
+const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -74,14 +78,17 @@ function App() {
   }
 
   return (
-    <LanguageProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <SiteContent />
-        </BrowserRouter>
-      </AuthProvider>
-    </LanguageProvider>
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Toaster position="top-right" />
+            <ScrollToTop />
+            <SiteContent />
+          </BrowserRouter>
+        </AuthProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
   );
 }
 
