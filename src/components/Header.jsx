@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../context/LanguageContext';
-import { Globe, Menu, X, ArrowRight } from 'lucide-react';
+import { Globe, Menu, X, Phone } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
@@ -32,9 +32,9 @@ const Header = () => {
           <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-[0.95rem] text-text hover:text-primary transition-all duration-300 max-lg:my-3">{t('nav.about')}</Link>
           <Link to="/services" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-[0.95rem] text-text hover:text-primary transition-all duration-300 max-lg:my-3">{t('nav.services')}</Link>
           <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)} className="font-medium text-[0.95rem] text-text hover:text-primary transition-all duration-300 max-lg:my-3">{t('nav.blog')}</Link>
-          <button className="inline-flex whitespace-nowrap shrink-0 items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 max-lg:mt-6">
-            {t('nav.quote')} <ArrowRight size={18} />
-          </button>
+          <a href="tel:+255740691481" className="inline-flex whitespace-nowrap shrink-0 items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 max-lg:mt-6">
+            <Phone size={18} /> +255 740 691 481
+          </a>
         </nav>
 
         <div className="flex items-center gap-5">
