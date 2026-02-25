@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from '../context/LanguageContext';
-import { Leaf, Award, Users, Target, CheckCircle } from 'lucide-react';
+import { Leaf, Award, Target, Database, Cpu, Droplets } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AboutPage = () => {
@@ -16,17 +16,29 @@ const AboutPage = () => {
         { key: 'professionalism', icon: <Target size={24} /> }
     ];
 
-    const teamMembers = [
-        { name: "John Doe", role: "CEO & Founder", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" },
-        { name: "Jane Smith", role: "Chief Agronomist", img: "https://images.unsplash.com/photo-1595856419342-570a290c01a1?auto=format&fit=crop&q=80&w=400" },
-        { name: "Michael Johnson", role: "Head of Engineering", img: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&q=80&w=400" }
+    const methodologySteps = [
+        {
+            title: "Precision Data Collection",
+            desc: "Focus on soil, weather, and crop health data.",
+            icon: <Database size={32} />
+        },
+        {
+            title: "AI-Powered Analysis",
+            desc: "Leveraging our AI Crop Doctor and Irrigation Calculator algorithms.",
+            icon: <Cpu size={32} />
+        },
+        {
+            title: "Sustainable Implementation",
+            desc: "Focus on high-yield, water-efficient results for Tanzanian farmers.",
+            icon: <Droplets size={32} />
+        }
     ];
 
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative min-h-[400px] pt-[80px] flex items-center justify-center text-center text-white bg-cover bg-center" style={{
-                backgroundImage: "linear-gradient(rgba(27, 77, 62, 0.8), rgba(27, 77, 62, 0.8)), url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=1200')"
+            <section className="relative min-h-[300px] pt-[80px] flex items-center justify-center text-center text-white bg-cover bg-center" style={{
+                backgroundImage: "linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(27, 77, 62, 0.75)), url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=1200')"
             }}>
                 <div className="max-w-7xl mx-auto px-5 md:px-8 w-full">
                     <motion.h1
@@ -54,16 +66,16 @@ const AboutPage = () => {
                         <div className="p-8 bg-surface rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                             <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-3">
                                 <span className="p-2 bg-primary/10 text-primary rounded-lg"><Target size={24} /></span>
-                                Mission
+                                {t('about.missionTitle')}
                             </h3>
-                            <p className="text-text-muted leading-relaxed">To revolutionize African agriculture by providing sustainable, data-driven solutions that empower farmers and ensure food security for generations to come.</p>
+                            <p className="text-text-muted leading-relaxed">{t('about.missionDesc')}</p>
                         </div>
                         <div className="p-8 bg-surface rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                             <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-3">
                                 <span className="p-2 bg-primary/10 text-primary rounded-lg"><Globe size={24} /></span>
-                                Vision
+                                {t('about.visionTitle')}
                             </h3>
-                            <p className="text-text-muted leading-relaxed">To be the leading agricultural innovation hub in East Africa, bridging the gap between traditional farming and modern technology.</p>
+                            <p className="text-text-muted leading-relaxed">{t('about.visionDesc')}</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +85,7 @@ const AboutPage = () => {
             <section className="py-14 md:py-24 bg-surface">
                 <div className="max-w-7xl mx-auto px-5 md:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-text mb-4">Our Core Values</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-text mb-4">{t('about.coreValuesTitle')}</h2>
                         <div className="w-16 h-1 bg-secondary rounded-full mx-auto"></div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,7 +102,7 @@ const AboutPage = () => {
                                     {React.cloneElement(value.icon, { size: 32 })}
                                 </div>
                                 <h3 className="text-xl font-bold text-primary mb-4">{t(`about.values.${value.key}`)}</h3>
-                                <p className="text-text-muted leading-relaxed">Commitment to excellence in every project we undertake.</p>
+                                <p className="text-text-muted leading-relaxed">{t('about.values.desc')}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -121,23 +133,25 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* Team Section */}
-            <section className="py-14 md:py-24">
+            {/* Methodology Section */}
+            <section className="py-12 md:py-16 bg-surface text-text">
                 <div className="max-w-7xl mx-auto px-5 md:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-text mb-4">Leadership Team</h2>
+                    <div className="text-center mb-10">
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-text">{t('about.methodology.title')}</h2>
                         <div className="w-16 h-1 bg-secondary rounded-full mx-auto"></div>
+                        <p className="mt-4 text-text-muted max-w-2xl mx-auto">{t('about.methodology.subtitle')}</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {teamMembers.map((member, idx) => (
-                            <div key={idx} className="bg-white rounded-2xl shadow-md overflow-hidden text-center hover:shadow-xl transition-shadow duration-300">
-                                <div className="h-[320px] overflow-hidden">
-                                    <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                        {methodologySteps.map((step, idx) => (
+                            <div key={idx} className="relative bg-white border border-border shadow-sm rounded-2xl p-8 hover:shadow-md transition-shadow flex flex-col items-center text-center overflow-hidden">
+                                <div className="absolute -top-4 -right-1 p-4 opacity-[0.03] text-8xl font-black text-primary">
+                                    0{idx + 1}
                                 </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl font-bold text-text mb-2">{member.name}</h3>
-                                    <p className="text-secondary font-semibold">{member.role}</p>
+                                <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 relative z-10">
+                                    {step.icon}
                                 </div>
+                                <h3 className="text-xl font-bold mb-3 text-text relative z-10">{t(`about.methodology.steps.${idx}.title`, { defaultValue: step.title })}</h3>
+                                <p className="text-text-muted leading-relaxed relative z-10">{t(`about.methodology.steps.${idx}.desc`, { defaultValue: step.desc })}</p>
                             </div>
                         ))}
                     </div>

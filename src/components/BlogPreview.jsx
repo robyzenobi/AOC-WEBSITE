@@ -36,7 +36,7 @@ const BlogPreview = () => {
         {isLoading ? (
           <div className="py-12 flex justify-center items-center gap-3 text-text-muted">
             <Loader className="animate-spin text-primary" size={24} />
-            <span>Loading latest insights...</span>
+            <span>{t('blog.loading')}</span>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -55,8 +55,8 @@ const BlogPreview = () => {
                   </div>
                   <div className="p-6 flex flex-col flex-1 pb-4">
                     <div className="flex items-center justify-between text-sm text-text-muted mb-4">
-                      <span className="flex items-center gap-1.5"><Calendar size={14} /> {post.created_at ? new Date(post.created_at).toLocaleDateString() : 'Recent'}</span>
-                      <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full font-semibold text-xs">{post.category || 'Insights'}</span>
+                      <span className="flex items-center gap-1.5"><Calendar size={14} /> {post.created_at ? new Date(post.created_at).toLocaleDateString() : t('blog.recent')}</span>
+                      <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full font-semibold text-xs">{post.category || t('blog.insights')}</span>
                     </div>
                     <h3 className="text-xl font-bold mb-3 text-text leading-tight group-hover:text-primary transition-colors">{post.title}</h3>
                     <p className="text-text-muted mb-6 flex-1 line-clamp-3">{post.content ? post.content.replace(/[#*`]/g, '').substring(0, 100) + '...' : ''}</p>

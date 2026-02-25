@@ -8,9 +8,9 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-[#0f172a] text-white py-14 md:py-20 mt-auto border-t border-border/10">
+    <footer className="bg-[#0f172a] text-white py-10 md:py-12 mt-auto border-t border-border/10">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
 
           {/* Column 1: Info */}
           <div className="flex flex-col">
@@ -28,7 +28,7 @@ const Footer = () => {
 
           {/* Column 2: Resources (Quick Links) */}
           <div>
-            <h4 className="text-primary font-bold text-lg mb-6">{t('footer.quickLinks')}</h4>
+            <h4 className="text-primary font-bold text-lg mb-4">{t('footer.quickLinks')}</h4>
             <ul className="flex flex-col gap-3">
               <li><Link to="/" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('nav.home')}</Link></li>
               <li><Link to="/about" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('nav.about')}</Link></li>
@@ -39,22 +39,22 @@ const Footer = () => {
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-primary font-bold text-lg mb-6">Company</h4>
+            <h4 className="text-primary font-bold text-lg mb-4">{t('footer.company')}</h4>
             <ul className="flex flex-col gap-3">
-              <li><Link to="/about" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">Our Team</Link></li>
-              <li><Link to="/contact" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">Careers</Link></li>
-              <li><Link to="/privacy" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">Privacy Policy</Link></li>
-              <li><Link to="/terms" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">Terms of Service</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('footer.ourTeam')}</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('footer.careers')}</Link></li>
+              <li><Link to="/privacy" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('footer.privacyPolicy')}</Link></li>
+              <li><Link to="/terms" className="text-gray-300 hover:text-primary transition-colors font-medium text-[0.95rem]">{t('footer.termsOfService')}</Link></li>
             </ul>
           </div>
 
           {/* Column 4: Newsletter */}
           <div>
-            <h4 className="text-primary font-bold text-lg mb-4">Stay Updated</h4>
-            <p className="text-gray-300 text-[0.9rem] mb-4">Subscribe to our newsletter for the latest agricultural insights.</p>
-            <form className="flex flex-col sm:flex-row gap-2 mb-6" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Enter your email" required className="flex-1 w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder-gray-400 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-[0.95rem]" />
-              <button type="submit" className="whitespace-nowrap shrink-0 px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">Subscribe</button>
+            <h4 className="text-primary font-bold text-lg mb-4">{t('footer.stayUpdated')}</h4>
+            <p className="text-gray-300 text-[0.9rem] mb-3">{t('footer.subscribeText')}</p>
+            <form className="flex flex-col sm:flex-row gap-2 mb-4" onSubmit={(e) => e.preventDefault()}>
+              <input type="email" placeholder={t('footer.enterEmail')} required className="flex-1 w-full px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-white placeholder-gray-400 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-[0.95rem]" />
+              <button type="submit" className="whitespace-nowrap shrink-0 px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">{t('footer.subscribe')}</button>
             </form>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ const Footer = () => {
 
         </div>
 
-        <div className="mt-16 pt-8 border-t border-solid border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[0.9rem] font-medium">
+        <div className="mt-8 pt-6 border-t border-solid border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[0.9rem] font-medium">
           <p>{t('footer.copyright')}</p>
         </div>
       </div>

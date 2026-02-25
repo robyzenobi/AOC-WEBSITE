@@ -7,7 +7,7 @@ const AICropDoctor = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Habari! Mimi ni daktari wako wa mimea. Naweza kukusaidiaje leo? Unaweza kupakia picha ya mmea wako au kuelezea tatizo.", sender: 'ai' }
+    { id: 1, text: t('aiDoctor.greetings'), sender: 'ai' }
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -33,13 +33,13 @@ const AICropDoctor = () => {
 
     // Simulate AI response
     setTimeout(() => {
-      let aiText = "Asante kwa taarifa. Kwa uchunguzi wa kina, tafadhali pakia picha ya mmea ulioathirika au wasiliana na wataalamu wetu kwa WhatsApp.";
+      let aiText = t('aiDoctor.defaultResponse');
 
       const lowerInput = userMessage.text.toLowerCase();
       if (lowerInput.includes('mahindi') || lowerInput.includes('maize')) {
-        aiText = "Kwa zao la mahindi, magonjwa ya kawaida ni Viwavijeshi au Madoa ya Majani. Je, unaona dalili zipi kwenye majani?";
+        aiText = t('aiDoctor.maizeResponse');
       } else if (lowerInput.includes('bei') || lowerInput.includes('price')) {
-        aiText = "Kwa bei za soko za hivi karibuni, tafadhali angalia sehemu yetu ya Takwimu za Soko kwenye tovuti.";
+        aiText = t('aiDoctor.priceResponse');
       }
 
       const aiMessage = { id: Date.now() + 1, text: aiText, sender: 'ai' };
@@ -67,7 +67,7 @@ const AICropDoctor = () => {
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold font-heading text-sm">AI</div>
                 <div>
                   <div className="font-bold text-[0.95rem] leading-tight">{t('aiDoctor.title')}</div>
-                  <div className="text-[0.75rem] text-white/80 font-medium">{isTyping ? 'Anachapa...' : 'Mtandaoni'}</div>
+                  <div className="text-[0.75rem] text-white/80 font-medium">{isTyping ? t('aiDoctor.typing') : t('aiDoctor.online')}</div>
                 </div>
               </div>
               <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors text-white border-none cursor-pointer" onClick={() => setIsOpen(false)}>
@@ -104,7 +104,7 @@ const AICropDoctor = () => {
                 </button>
                 <input
                   type="text"
-                  placeholder="Andika hapa..."
+                  placeholder={t('aiDoctor.inputPlaceholder')}
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   className="flex-1 bg-transparent border-none text-[0.9rem] text-text px-2 py-2 focus:outline-none min-w-0"
@@ -114,7 +114,7 @@ const AICropDoctor = () => {
                 </button>
               </form>
               <div className="flex justify-between items-center px-1">
-                <small className="text-[0.75rem] font-semibold text-text-muted uppercase tracking-wider">Au wasiliana nasi:</small>
+                <small className="text-[0.75rem] font-semibold text-text-muted uppercase tracking-wider">{t('aiDoctor.orContactUs')}</small>
                 <div className="flex items-center gap-2">
                   <a href={whatsappLink} target="_blank" rel="noreferrer" title="WhatsApp" className="text-text-muted hover:text-primary transition-colors p-1"><MessageCircle size={18} /></a>
                   <a href={telegramLink} target="_blank" rel="noreferrer" title="Telegram" className="text-text-muted hover:text-primary transition-colors p-1"><Send size={18} /></a>

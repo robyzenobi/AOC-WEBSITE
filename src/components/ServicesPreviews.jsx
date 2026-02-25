@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 import { Leaf, Ruler, Sprout, Microscope, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -51,9 +52,9 @@ const ServicesPreviews = () => {
               <div className="p-6 pt-10 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold mb-3 text-text">{t(`services.${service.key}.title`)}</h3>
                 <p className="text-text-muted mb-6 flex-1 leading-relaxed">{t(`services.${service.key}.description`)}</p>
-                <button className="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary hover:bg-primary/10 rounded-lg text-sm font-semibold transition-colors self-start whitespace-nowrap">
+                <Link to="/services#quote" className="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary hover:bg-primary/10 rounded-lg text-sm font-semibold transition-colors self-start whitespace-nowrap">
                   {t('nav.quote')} <ArrowRight size={16} />
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}

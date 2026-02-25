@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Lock, Mail, Loader, AlertCircle, Leaf } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useTranslation } from '../context/LanguageContext';
 
 const LoginPage = () => {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -22,8 +24,8 @@ const LoginPage = () => {
             navigate('/admin/blog');
         } catch (err) {
             console.error("Login Error:", err);
-            setError('Failed to log in. Please check your credentials.');
-            toast.error('Failed to log in. Please check your credentials.');
+            setError(t('login.errorMsg'));
+            toast.error(t('login.errorMsg'));
         }
 
         setLoading(false);
@@ -39,8 +41,8 @@ const LoginPage = () => {
                     <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-5 rotate-3 hover:rotate-0 transition-transform duration-300">
                         <Leaf size={32} />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold font-heading text-text mb-2">Admin Access</h2>
-                    <p className="text-text-muted">Please sign in to manage the platform</p>
+                    <h2 className="text-2xl md:text-3xl font-bold font-heading text-text mb-2">{t('login.title')}</h2>
+                    <p className="text-text-muted">{t('login.subtitle')}</p>
                 </div>
 
                 {error && (
@@ -52,7 +54,7 @@ const LoginPage = () => {
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-bold text-text ml-1">Email Address</label>
+                        <label className="text-sm font-bold text-text ml-1">{t('login.emailLabel')}</label>
                         <div className="relative group">
                             <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors" />
                             <input
@@ -67,7 +69,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-bold text-text ml-1">Password</label>
+                        <label className="text-sm font-bold text-text ml-1">{t('login.passwordLabel')}</label>
                         <div className="relative group">
                             <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors" />
                             <input
@@ -82,7 +84,7 @@ const LoginPage = () => {
                     </div>
 
                     <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary-light transition-all flex items-center justify-center mt-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-md" disabled={loading}>
-                        {loading ? <Loader className="animate-spin" size={20} /> : 'Sign In To Dashboard'}
+                        {loading ? <Loader className="animate-spin" size={20} /> : t('login.buttonText')}
                     </button>
                 </form>
             </div>

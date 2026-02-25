@@ -24,7 +24,7 @@ const BlogPost = () => {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center p-5 md:p-8 pt-[120px]">
                 <Loader className="animate-spin text-primary mb-4" size={40} />
-                <p className="text-text-muted font-medium">Loading post...</p>
+                <p className="text-text-muted font-medium">{t('blogPost.loading')}</p>
             </div>
         );
     }
@@ -32,8 +32,8 @@ const BlogPost = () => {
     if (!post) {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center text-center p-5 md:p-8 pt-[120px]">
-                <h2 className="text-3xl font-bold font-heading mb-4 text-text">Post not found</h2>
-                <Link to="/blog" className="inline-block bg-primary text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-primary-light transition-colors mt-4">Back to Blog</Link>
+                <h2 className="text-3xl font-bold font-heading mb-4 text-text">{t('blogPost.notFound')}</h2>
+                <Link to="/blog" className="inline-block bg-primary text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-primary-light transition-colors mt-4">{t('blogPost.backToBlog')}</Link>
             </div>
         );
     }
@@ -47,8 +47,8 @@ const BlogPost = () => {
                         <span className="inline-block bg-primary text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">{post.category}</span>
                         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-heading mb-6 leading-tight">{post.title}</h1>
                         <div className="flex flex-wrap items-center gap-6 text-white/80 font-medium">
-                            <span className="flex items-center gap-2"><Calendar size={18} /> {post.created_at ? new Date(post.created_at).toLocaleDateString() : 'Recent'}</span>
-                            <span className="flex items-center gap-2"><User size={18} /> Admin</span>
+                            <span className="flex items-center gap-2"><Calendar size={18} /> {post.created_at ? new Date(post.created_at).toLocaleDateString() : t('blog.recent')}</span>
+                            <span className="flex items-center gap-2"><User size={18} /> {t('blogPost.admin')}</span>
                         </div>
                     </div>
                 </div>
@@ -67,16 +67,16 @@ const BlogPost = () => {
 
                     <div className="space-y-6">
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-black/5">
-                            <h3 className="text-lg font-bold font-heading mb-4 text-text">Share this post</h3>
+                            <h3 className="text-lg font-bold font-heading mb-4 text-text">{t('blogPost.shareTitle')}</h3>
                             <div className="flex gap-3">
                                 <button className="inline-flex items-center gap-2 px-4 py-2 border border-border text-text rounded-lg hover:bg-surface transition-colors text-sm font-semibold w-full justify-center">
-                                    <Share2 size={16} /> Share
+                                    <Share2 size={16} /> {t('blogPost.shareBtn')}
                                 </button>
                             </div>
                         </div>
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-black/5">
                             <Link to="/blog" className="inline-flex items-center justify-center gap-2 text-primary font-semibold hover:text-primary-light transition-colors w-full">
-                                <ArrowLeft size={16} /> Back to all posts
+                                <ArrowLeft size={16} /> {t('blogPost.backAll')}
                             </Link>
                         </div>
                     </div>
