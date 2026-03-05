@@ -14,46 +14,37 @@ const AboutUs = () => {
 
   return (
     <section className="py-14 md:py-24" id="about">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            className="relative px-4 sm:px-8 lg:px-0"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <img src="https://images.unsplash.com/photo-1489352937578-32d1e2930796?auto=format&fit=crop&q=80&w=1200" alt="Sustainable Farming" loading="lazy" decoding="async" className="w-full rounded-2xl shadow-lg object-cover" />
-          </motion.div>
-
-          <div className="mt-8 lg:mt-0">
+      <div className="max-w-5xl mx-auto px-5 md:px-8">
+        <div className="flex flex-col items-center text-center">
+          <div className="max-w-3xl mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-heading text-text mb-4">{t('about.title')}</h2>
-            <div className="w-16 h-1 bg-secondary rounded-full mb-6"></div>
-            <p className="text-lg text-text-muted mb-10 leading-relaxed">{t('about.narrative')}</p>
+            <div className="w-16 h-1 bg-secondary rounded-full mx-auto mb-8"></div>
+            <p className="text-lg text-text-muted leading-relaxed">{t('about.narrative')}</p>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6 mb-10">
-              {values.map((value) => (
-                <div key={value.key} className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center shrink-0">{value.icon}</div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-primary">{t(`about.values.${value.key}`)}</h4>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full mb-12">
+            {values.map((value) => (
+              <div key={value.key} className="flex flex-col items-center gap-4 p-6 bg-surface rounded-2xl shadow-sm border border-border">
+                <div className="w-14 h-14 bg-primary/10 text-primary rounded-xl flex items-center justify-center shrink-0">
+                  {value.icon}
                 </div>
-              ))}
-            </div>
+                <h4 className="text-lg font-bold text-primary">{t(`about.values.${value.key}`)}</h4>
+              </div>
+            ))}
+          </div>
 
-            <div className="flex flex-wrap gap-8 md:gap-12 border-t border-border pt-8">
-              <div>
-                <h3 className="text-3xl font-bold font-heading text-secondary mb-1">5k+</h3>
-                <p className="text-sm font-semibold text-text-muted">{t('about.impact.acres')}</p>
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold font-heading text-secondary mb-1">1M+</h3>
-                <p className="text-sm font-semibold text-text-muted">{t('about.impact.trees')}</p>
-              </div>
-              <div>
-                <h3 className="text-3xl font-bold font-heading text-secondary mb-1">200+</h3>
-                <p className="text-sm font-semibold text-text-muted">{t('about.impact.jobs')}</p>
-              </div>
+          <div className="flex flex-wrap justify-center gap-12 md:gap-24 border-t border-border w-full pt-10">
+            <div>
+              <h3 className="text-4xl md:text-5xl font-bold font-heading text-secondary mb-2">5k+</h3>
+              <p className="text-sm md:text-base font-semibold text-text-muted">{t('about.impact.acres')}</p>
+            </div>
+            <div>
+              <h3 className="text-4xl md:text-5xl font-bold font-heading text-secondary mb-2">1M+</h3>
+              <p className="text-sm md:text-base font-semibold text-text-muted">{t('about.impact.trees')}</p>
+            </div>
+            <div>
+              <h3 className="text-4xl md:text-5xl font-bold font-heading text-secondary mb-2">200+</h3>
+              <p className="text-sm md:text-base font-semibold text-text-muted">{t('about.impact.jobs')}</p>
             </div>
           </div>
         </div>
