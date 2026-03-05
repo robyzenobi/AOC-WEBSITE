@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import { ChevronRight, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -23,9 +24,9 @@ const Hero = () => {
           <h1 className="text-[clamp(2.5rem,6vw,4rem)] mx-auto mb-6 leading-[1.1] font-bold font-heading">{t('hero.title')}</h1>
           <p className="text-[clamp(1rem,2vw,1.25rem)] opacity-90 mx-auto mb-10 max-w-[600px]">{t('hero.subtitle')}</p>
           <div className="flex justify-center gap-5 flex-wrap">
-            <button className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
+            <Link to="/services" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
               {t('hero.cta')} <ChevronRight size={20} />
-            </button>
+            </Link>
             <a href="https://wa.me/255740691481" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg rounded-xl font-semibold bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
               {t('hero.whatsapp')}
             </a>

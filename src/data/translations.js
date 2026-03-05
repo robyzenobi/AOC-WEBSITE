@@ -13,7 +13,7 @@ export const translations = {
       subtitle: "Innovation for food security & afforestation in Africa. We empower commercial farmers and investors with sustainable technology.",
       cta: "Explore Solutions",
       whatsapp: "WhatsApp US",
-      trust: "Trusted by 50+ International Investors & NGOs",
+      trust: "Trusted by commercial farmers and NGOs",
     },
     about: {
       title: "Our Mission",
@@ -186,7 +186,7 @@ export const translations = {
       subtitle: "Uvumbuzi kwa usalama wa chakula na upandaji miti barani Afrika. Tunawezesha wakulima wa biashara na wawekezaji kwa teknolojia endelevu.",
       cta: "Gundua Suluhisho",
       whatsapp: "WhatsApp US",
-      trust: "Imetumiwa na Wawekezaji wa Kimataifa 50+ na NGOs",
+      trust: "Inaaminiwa na wakulima wa kibiashara na NGOs",
     },
     about: {
       title: "Sera Yetu",
