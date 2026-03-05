@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { Calendar, User, ArrowLeft, Share2, Loader } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from '../context/LanguageContext';
 
 const fetchPost = async ({ queryKey }) => {
     const [_key, slug] = queryKey;
@@ -13,6 +14,7 @@ const fetchPost = async ({ queryKey }) => {
 
 const BlogPost = () => {
     const { slug } = useParams();
+    const { t } = useTranslation();
 
     const { data: post, isLoading: loading } = useQuery({
         queryKey: ['blogPost', slug],

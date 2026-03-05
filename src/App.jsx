@@ -1,23 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import Header from './components/Header';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import BlogPage from './pages/BlogPage';
-import BlogPost from './pages/BlogPost';
-import LoginPage from './pages/LoginPage';
 import Footer from './components/Footer';
 import AICropDoctor from './components/AICropDoctor';
 import AdminLayout from './components/admin/AdminLayout';
-import BlogAdmin from './pages/admin/BlogAdmin';
+
+// Lazy load route pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const BlogAdmin = lazy(() => import('./pages/admin/BlogAdmin'));
 import { AuthProvider } from './context/AuthContext';
 import { initializationError } from './supabase';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (garbage collection time)
+      refetchOnWindowFocus: false, // Prevent unnecessary refetches
+    },
+  },
+});
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -38,22 +48,28 @@ const SiteContent = () => {
   }, [language]);
 
   return (
-    <div className="app-wrapper">
+    <div className="app-wrapper flex flex-col min-h-screen">
       <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/login" element={<LoginPage />} />
+      <main className="flex-grow">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/login" element={<LoginPage />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="blog" element={<BlogAdmin />} />
-          </Route>
-        </Routes>
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="blog" element={<BlogAdmin />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
       <AICropDoctor />

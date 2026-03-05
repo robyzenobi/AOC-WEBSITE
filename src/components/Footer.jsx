@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Column 1: Info */}
           <div className="flex flex-col">
             <div className="mb-4">
-              <img src={logo} alt="AOC TZ Logo" className="h-16 md:h-20 w-auto object-contain" />
+              <img src={logo} alt="AOC TZ Logo" loading="lazy" decoding="async" className="h-16 md:h-20 w-auto object-contain" />
             </div>
             <p className="text-gray-300 text-[0.95rem] leading-relaxed mb-6">{t('footer.tagline')}</p>
             <div className="flex items-center gap-4 text-white">

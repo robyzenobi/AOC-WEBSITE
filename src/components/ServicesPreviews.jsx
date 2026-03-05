@@ -44,7 +44,7 @@ const ServicesPreviews = () => {
               transition={{ delay: index * 0.1 }}
             >
               <div className="relative h-48 md:h-56 overflow-hidden">
-                <img src={service.image} alt={t(`services.${service.key}.title`)} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src={service.image} alt={t(`services.${service.key}.title`)} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute -bottom-5 right-5 w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg border-4 border-white z-10">
                   {service.icon}
                 </div>

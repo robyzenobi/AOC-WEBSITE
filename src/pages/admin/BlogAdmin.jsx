@@ -124,7 +124,7 @@ const BlogAdmin = () => {
                             await new Promise(resolve => setTimeout(resolve, 1000 * retryCount)); // Backoff
                         }
 
-                        const { data, error } = await supabase.storage.from('blog-images').upload(storagePath, fileToUpload);
+                        const { error } = await supabase.storage.from('blog-images').upload(storagePath, fileToUpload);
 
                         if (error) throw error;
 
@@ -293,7 +293,7 @@ const BlogAdmin = () => {
                                                 <tr key={post.id} className="hover:bg-surface transition-colors">
                                                     <td className="p-4 text-left border-b border-border">
                                                         <div className="w-16 h-10 rounded overflow-hidden bg-gray-100 shrink-0">
-                                                            {post.image && <img className="w-full h-full object-cover" src={post.image} alt={post.title} />}
+                                                            {post.image && <img className="w-full h-full object-cover" src={post.image} alt={post.title} loading="lazy" decoding="async" />}
                                                         </div>
                                                     </td>
                                                     <td className="p-4 text-left border-b border-border font-medium text-text">{post.title}</td>

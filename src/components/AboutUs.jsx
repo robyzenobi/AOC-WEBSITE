@@ -22,7 +22,7 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <img src="https://images.unsplash.com/photo-1489352937578-32d1e2930796?auto=format&fit=crop&q=80&w=1200" alt="Sustainable Farming" className="w-full rounded-2xl shadow-lg object-cover" />
+            <img src="https://images.unsplash.com/photo-1489352937578-32d1e2930796?auto=format&fit=crop&q=80&w=1200" alt="Sustainable Farming" loading="lazy" decoding="async" className="w-full rounded-2xl shadow-lg object-cover" />
             <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-4 lg:-bottom-8 lg:-right-8 bg-primary text-white p-6 sm:p-8 rounded-2xl text-center shadow-xl flex flex-col">
               <span className="text-3xl sm:text-4xl font-extrabold leading-none">10+</span>
               <span className="text-xs sm:text-sm font-semibold opacity-90 mt-1">{t('about.impact.years')}</span>

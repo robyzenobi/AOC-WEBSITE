@@ -51,7 +51,7 @@ const BlogPreview = () => {
               >
                 <Link to={`/blog/${post.slug || post.id}`} className="flex flex-col h-full">
                   <div className="relative h-56 md:h-64 overflow-hidden">
-                    <img src={post.image || 'https://images.unsplash.com/photo-1595856419342-570a290c01a1?auto=format&fit=crop&q=80&w=800'} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img src={post.image || 'https://images.unsplash.com/photo-1595856419342-570a290c01a1?auto=format&fit=crop&q=80&w=800'} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6 flex flex-col flex-1 pb-4">
                     <div className="flex items-center justify-between text-sm text-text-muted mb-4">

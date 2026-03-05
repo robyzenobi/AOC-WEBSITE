@@ -24,7 +24,7 @@ const Header = () => {
     <header className={`fixed top-0 left-0 w-full flex items-center z-50 bg-white border-b border-border transition-all duration-300 ${isScrolled ? 'h-[70px] shadow-sm' : 'h-[80px]'}`}>
       <div className="max-w-7xl mx-auto px-5 md:px-8 w-full flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="AOC TZ Logo" className="h-16 md:h-20 w-auto object-contain" />
+          <img src={logo} alt="AOC TZ Logo" fetchPriority="high" loading="eager" decoding="sync" className="h-16 md:h-20 w-auto object-contain" />
         </Link>
 
         <nav className={`max-lg:fixed max-lg:top-0 max-lg:h-screen max-lg:w-4/5 max-lg:bg-white max-lg:flex-col max-lg:justify-center max-lg:p-8 max-lg:transition-all max-lg:duration-400 max-lg:shadow-[-10px_0_30px_rgba(0,0,0,0.1)] lg:flex lg:gap-8 lg:items-center ${isMobileMenuOpen ? 'max-lg:right-0 max-lg:flex' : 'max-lg:-right-full max-lg:hidden'}`}>

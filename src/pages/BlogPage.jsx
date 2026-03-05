@@ -50,7 +50,7 @@ const BlogPage = () => {
                             {posts.map(post => (
                                 <article key={post.id} className="bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
                                     <div className="relative h-[220px] overflow-hidden">
-                                        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                        <img src={post.image} alt={post.title} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                     </div>
                                     <div className="p-6 flex flex-col flex-1">
                                         <div className="flex items-center justify-between text-sm text-text-muted mb-4">
