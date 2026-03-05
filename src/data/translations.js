@@ -86,6 +86,34 @@ export const translations = {
         contactTitle: "Need personalized help?",
         contactSubtitle: "Consult our expert agronomists",
         chatNow: "Chat Now"
+      },
+      quoteForm: {
+        title: "Request a Quote",
+        subtitle: "Fill in the form below and our team will get back to you with a custom plan.",
+        fullName: "Full Name",
+        namePlaceholder: "John Doe",
+        phone: "Phone Number",
+        phonePlaceholder: "+255 123 456 789",
+        email: "Email Address",
+        emailPlaceholder: "john@example.com",
+        serviceNeeded: "Service Needed",
+        selectService: "-- Select a service --",
+        options: {
+          soil: "Soil Testing",
+          crop: "Farm Management",
+          irrigation: "Irrigation Systems",
+          pest: "Pest Control",
+          seedlings: "Seedling Production",
+          other: "Other"
+        },
+        description: "Describe What You Need",
+        descriptionPlaceholder: "Briefly explain what you need — e.g. soil test for 10 acres of maize in Morogoro...",
+        farmInfo: "Farm Size & Location (Optional)",
+        farmPlaceholder: "e.g. 50 acres, Morogoro",
+        details: "Additional Details",
+        detailsPlaceholder: "Tell us more about your needs...",
+        submit: "Submit Quote Request",
+        successMessage: "Quote request submitted successfully! We'll be in touch soon."
       }
     },
     calculator: {
@@ -248,18 +276,23 @@ export const translations = {
         email: "Barua Pepe",
         emailPlaceholder: "juma@example.com",
         serviceNeeded: "Huduma Inayohitajika",
+        selectService: "-- Chagua huduma --",
         options: {
           soil: "Uchambuzi wa Udongo",
-          crop: "Ufuatiliaji wa Mazao",
+          crop: "Usimamizi wa Shamba",
           irrigation: "Umwagiliaji",
           pest: "Udhibiti wa Wadudu",
+          seedlings: "Uzalishaji wa Miche",
           other: "Nyingine"
         },
+        description: "Elezea Unachohitaji",
+        descriptionPlaceholder: "Elezea kwa ufupi unachohitaji — mfn. upimaji wa udongo kwa hekari 10 za mahindi Morogoro...",
         farmInfo: "Ukubwa wa Shamba & Eneo (Si Lazima)",
         farmPlaceholder: "Mfn. hekari 50 Morogoro",
         details: "Maelezo ya Ziada",
         detailsPlaceholder: "Tuambie zaidi kuhusu mahitaji yako...",
-        submit: "Wasilisha Ombi la Gharama"
+        submit: "Wasilisha Ombi la Gharama",
+        successMessage: "Ombi la makadirio limewasilishwa! Tutawasiliana nawe hivi karibuni."
       },
       soil: {
         title: "Upimaji wa Udongo",

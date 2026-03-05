@@ -110,42 +110,55 @@ const ServicesPage = () => {
                     <h2 className="text-3xl font-bold font-heading text-text mb-2">{t('services.quoteForm.title')}</h2>
                     <p className="text-text-muted">{t('services.quoteForm.subtitle')}</p>
                 </div>
-                <form className="space-y-6 max-w-2xl mx-auto" onSubmit={handleQuoteSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col gap-2">
+                <form className="space-y-5 max-w-2xl mx-auto" onSubmit={handleQuoteSubmit}>
+                    {/* Name + Phone */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="flex flex-col gap-1.5">
                             <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.fullName')}</label>
-                            <input type="text" placeholder={t('services.quoteForm.namePlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none" />
+                            <input type="text" placeholder={t('services.quoteForm.namePlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text" />
                         </div>
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-1.5">
                             <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.phone')}</label>
-                            <input type="tel" placeholder={t('services.quoteForm.phonePlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none" />
+                            <input type="tel" placeholder={t('services.quoteForm.phonePlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text" />
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col gap-2">
-                            <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.email')}</label>
-                            <input type="email" placeholder={t('services.quoteForm.emailPlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none" />
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.serviceNeeded')}</label>
-                            <select className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none">
+
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.email')}</label>
+                        <input type="email" placeholder={t('services.quoteForm.emailPlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text" />
+                    </div>
+
+                    {/* Service Dropdown */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.serviceNeeded')}</label>
+                        <div className="relative">
+                            <select required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none cursor-pointer pr-10">
+                                <option value="" disabled selected>{t('services.quoteForm.selectService')}</option>
                                 <option value="soil">{t('services.quoteForm.options.soil')}</option>
                                 <option value="crop">{t('services.quoteForm.options.crop')}</option>
                                 <option value="irrigation">{t('services.quoteForm.options.irrigation')}</option>
                                 <option value="pest">{t('services.quoteForm.options.pest')}</option>
+                                <option value="seedlings">{t('services.quoteForm.options.seedlings')}</option>
                                 <option value="other">{t('services.quoteForm.options.other')}</option>
                             </select>
+                            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-text-muted">▾</span>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2">
+
+                    {/* Short Description */}
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.description')}</label>
+                        <textarea rows="4" placeholder={t('services.quoteForm.descriptionPlaceholder')} required className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text resize-none"></textarea>
+                    </div>
+
+                    {/* Farm Info (optional) */}
+                    <div className="flex flex-col gap-1.5">
                         <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.farmInfo')}</label>
-                        <input type="text" placeholder={t('services.quoteForm.farmPlaceholder')} className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none" />
+                        <input type="text" placeholder={t('services.quoteForm.farmPlaceholder')} className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text" />
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <label className="text-sm font-bold text-text ml-1">{t('services.quoteForm.details')}</label>
-                        <textarea rows="4" placeholder={t('services.quoteForm.detailsPlaceholder')} className="w-full px-4 py-3 bg-surface border border-black/10 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-medium text-text appearance-none resize-none"></textarea>
-                    </div>
-                    <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary-light transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 mt-4">
+
+                    <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary-light transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 mt-2">
                         {t('services.quoteForm.submit')}
                     </button>
                 </form>
