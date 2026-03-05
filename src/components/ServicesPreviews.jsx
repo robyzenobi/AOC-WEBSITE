@@ -6,19 +6,19 @@ import { motion } from 'framer-motion';
 
 const servicesList = [
   {
-    key: 'seedlings',
-    icon: <Sprout size={32} />,
-    image: 'https://images.unsplash.com/photo-1592150621344-78439b734823?auto=format&fit=crop&q=80&w=800'
+    key: 'soil',
+    icon: <Microscope size={32} />,
+    image: '/images/soil-testing.jpg'
   },
   {
     key: 'management',
     icon: <Ruler size={32} />,
-    image: 'https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?auto=format&fit=crop&q=80&w=800'
+    image: '/images/farm-management.jpg'
   },
   {
-    key: 'soil',
-    icon: <Microscope size={32} />,
-    image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800'
+    key: 'seedlings',
+    icon: <Sprout size={32} />,
+    image: '/images/seedling-production.jpg'
   }
 ];
 
